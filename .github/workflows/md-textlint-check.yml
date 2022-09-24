@@ -32,7 +32,8 @@ jobs:
         npm install -g textlint-rule-terminology
     - name: Changed Files Exporter
       id: files
-      uses: futuratrepadeira/changed-files@v3.2.1
+      # This uses the SHA for 4.0.0 - https://github.com/umani/changed-files/releases/tag/v4.0.0
+      uses: umani/changed-files@96d5fd702a6479d573287ef07381ad59acc390ed
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         pattern: '^.*\.(md)$'
