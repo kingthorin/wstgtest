@@ -30,7 +30,8 @@ jobs:
     - name: Changed Files Exporter
       if: github.event_name == 'pull_request_target'
       id: files
-      uses: umani/changed-files@v4.0.0
+      # This uses the SHA for 4.0.0 - https://github.com/umani/changed-files/releases/tag/v4.0.0
+      uses: umani/changed-files@96d5fd702a6479d573287ef07381ad59acc390ed
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
     - name: PR link check
