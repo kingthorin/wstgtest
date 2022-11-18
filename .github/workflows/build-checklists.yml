@@ -33,7 +33,7 @@ jobs:
         git update-index -q --refresh
         if ! git diff-index --quiet HEAD --; then
           export CHANGED=true
-          echo "$CHANGED" >> $GITHUB_ENV
+          echo $CHANGED >> $GITHUB_ENV
         fi
     - name: Setup Python
       uses: actions/setup-python@v4
