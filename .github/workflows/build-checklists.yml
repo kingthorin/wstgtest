@@ -28,7 +28,13 @@ jobs:
         sudo apt update
         sudo apt install moreutils
     - name: Run JSON Build
-      run: npm run-script jsongen
+      run: |
+        npm run-script jsongen
+        git update-index -q --refresh
+        if ! git diff-index --quiet HEAD --; then
+          export CHANGED=true
+          echo "$CHANGED" >> $GITHUB_ENV
+        fi
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -57,6 +63,7 @@ jobs:
         # Checkout what will be the new feature branch
         git checkout -b $BRANCH_STAMP
     - name: Push Feature Branch and Raise PR
+      if: "$CHANGED" == "true"
       run: |
         # If there are changes: add, commit, PR
         git add checklists/
