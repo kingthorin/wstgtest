@@ -31,9 +31,9 @@ jobs:
       run: |
         npm run-script jsongen
         git update-index -q --refresh
-        # if ! git diff-index --quiet HEAD --; then
-          # echo "CHANGED=true" >> $GITHUB_ENV
-        # fi
+        if ! git diff-index --quiet HEAD --; then
+          echo "CHANGED=true" >> $GITHUB_ENV
+        fi
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
