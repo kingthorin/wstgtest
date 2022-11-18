@@ -62,7 +62,7 @@ jobs:
         # Checkout what will be the new feature branch
         git checkout -b $BRANCH_STAMP
     - name: Push Feature Branch and Raise PR
-      if: "$CHANGED" == "true"
+      if: '$CHANGED' == 'true'
       run: |
         # If there are changes: add, commit, PR
         git add checklists/
