@@ -31,9 +31,9 @@ jobs:
       run: |
         npm run-script jsongen
         git update-index -q --refresh
-        if ! git diff-index --quiet HEAD --; then
-          echo "CHANGED=true" >> $GITHUB_ENV
-        fi
+        # if ! git diff-index --quiet HEAD --; then
+          # echo "CHANGED=true" >> $GITHUB_ENV
+        # fi
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -62,7 +62,7 @@ jobs:
         # Checkout what will be the new feature branch
         git checkout -b $BRANCH_STAMP
     - name: Push Feature Branch and Raise PR
-      if: '$CHANGED' == 'true'
+      # if: '$CHANGED' == 'true'
       run: |
         # If there are changes: add, commit, PR
         git add checklists/
