@@ -5,7 +5,6 @@ on:
     paths:
     - '**.md'
     - '!.github/**'
-    - '!translations/**'
   workflow_dispatch:
 
 permissions:
@@ -17,12 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Setup Action
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         ref: ${{github.event.pull_request.head.ref}}
         repository: ${{github.event.pull_request.head.repo.full_name}}
     - name: Setup Node
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: '16'
     - name: Install dependencies
@@ -42,7 +41,7 @@ jobs:
         echo "The Following files were changed or created:"
         echo $FILES
         touch log err
-        for FILE in $FILES; do echo $FILE | grep -v translations | grep -q .*\.md\$ && markdown-link-check -q -v -c .github/configs/markdown-link-check-config.json $FILE 1>> log 2>> err; done
+        for FILE in $FILES; do echo $FILE | grep -q .*\.md\$ && markdown-link-check -q -v -c .github/configs/markdown-link-check-config.json $FILE 1>> log 2>> err; done
         if grep -q  "ERROR:" err ; then exit 1 ; else echo -e "No broken links found."; fi
         echo $(cat log)
         echo $(cat err)
@@ -50,7 +49,7 @@ jobs:
       if: github.event_name == 'workflow_dispatch'
       run: |
         touch log err
-        find . -path ./translations -prune -o -name \*.md -exec markdown-link-check -q -v --config .github/configs/markdown-link-check-config.json {} 1>> log 2>> err \;
+        find . -name \*.md -exec markdown-link-check -q -v --config .github/configs/markdown-link-check-config.json {} 1>> log 2>> err \;
         if grep -q  "ERROR:" err ; then exit 1 ; else echo -e "No broken links found."; fi
         echo $(cat log)
         echo $(cat err)
@@ -62,13 +61,13 @@ jobs:
         rm -f err log
     - name: Upload list of broken links
       if: failure()
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v3
       with:
         name: broken-links
         path: brokenlinks.txt
     - name: Comment Broken Links
       if: ${{ failure() && github.event_name == 'pull_request_target' }}
-      uses: actions/github-script@v2
+      uses: actions/github-script@v6
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
