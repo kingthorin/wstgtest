@@ -42,7 +42,7 @@ jobs:
       uses: umani/changed-files@v4.2.0
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        pattern: '^pr\.*\.(md)$'
+        pattern: '^pr\\.*\.(md)$'
     - name: Run textlint Check
       env:
         FILES: '${{ steps.files.outputs.files_updated }} ${{ steps.files.outputs.files_created }}'
