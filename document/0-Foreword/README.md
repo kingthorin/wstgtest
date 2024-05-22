@@ -1,6 +1,6 @@
 # Foreword by Eoin Keary
 
-The problem of insecure software is perhaps the most important technical challenge of our time. The dramatic rise of web applications enabling business, social networking etc has only compounded the requirements to establish a robust approach to writing and securing our Internet, Web Applications and Data.
+The problem of insecure software is perhaps the most important technical challenge of our time. The dramatic rise of web applications enabling business, social networking etc has only compounded the requirements to establish a robust approach to writing and securing our internet, Web Applications and Data.
 
 At the Open Web Application Security Project® (OWASP®), we're trying to make the world a place where insecure software is the anomaly, not the norm. The OWASP Testing Guide has an important role to play in solving this serious issue. It is vitally important that our approach to testing software for security issues is based on the principles of engineering and science. We need a consistent, repeatable and defined approach to testing web applications. A world without some minimal standards in terms of engineering and technology is a world in chaos.
 
@@ -10,7 +10,7 @@ Security testing, by itself, isn't a particularly good stand alone measure of ho
 
 In conjunction with other OWASP projects such as the Code Review Guide, the Development Guide and tools such as [OWASP ZAP](https://www.zaproxy.org/), this is a great start towards building and maintaining secure applications. This Testing Guide will show you how to verify the security of your running application. I highly recommend using these guides as part of your application security initiatives.
 
-[link](https://shouldfail6667.org)
+[link](https://google.com)
 
 ## Why OWASP?
 
