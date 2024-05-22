@@ -16,11 +16,17 @@ jobs:
   textlint:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
+    - name: Checkout PR
       uses: actions/checkout@v4
       with:
         ref: ${{github.event.pull_request.head.ref}}
         repository: ${{github.event.pull_request.head.repo.full_name}}
+        path: pr
+    - name: Checkout Base
+      uses: actions/checkout@v4
+      with:
+        repository: kingthorin/wstgtest
+        path: base
     - name: Setup Node
       uses: actions/setup-node@v4
       with:
@@ -36,7 +42,7 @@ jobs:
       uses: umani/changed-files@v4.2.0
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        pattern: '^.*\.(md)$'
+        pattern: '^pr\.*\.(md)$'
     - name: Run textlint Check
       env:
         FILES: '${{ steps.files.outputs.files_updated }} ${{ steps.files.outputs.files_created }}'
@@ -44,7 +50,7 @@ jobs:
         touch log.txt
         # All markdown files, excluding .github
         # Use fix flag so that it goes through all files
-        for FILE in $FILES; do echo $FILE | grep -v \.github && textlint --config .github/configs/.textlintrc --fix --rule terminology $FILE | tee -a log.txt; done
+        for FILE in $FILES; do echo $FILE | grep -v \.github && textlint --config base/.github/configs/.textlintrc --fix --rule terminology $FILE | tee -a log.txt; done
         if grep -q  'Incorrect usage' log.txt ; then exit 1 ; else echo -e \"No terminology issues found.\"; fi
     - name: Show Mistakes
       if: failure()
