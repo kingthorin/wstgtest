@@ -15,7 +15,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: artifact
-          path: artifact.zip
+          path: ${{ github.workspace }}/artifact.zip
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
       - name: 'Unzip artifact'
