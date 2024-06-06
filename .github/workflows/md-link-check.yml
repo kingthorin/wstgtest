@@ -66,20 +66,5 @@ jobs:
       if: failure()
       uses: actions/upload-artifact@v3
       with:
-        name: broken-links
-        path: brokenlinks.txt
-    - name: Comment Broken Links
-      if: ${{ failure() && github.event_name == 'pull_request_target' }}
-      uses: actions/github-script@v6
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-        script: |
-          const fs = require("fs");
-          const brokenLinksPath = `${process.env.GITHUB_WORKSPACE}/brokenlinks.txt`;
-          const brokenLinksString = fs.readFileSync(brokenLinksPath).toString().trimEnd();
-          github.rest.issues.createComment({
-            issue_number: ${{ github.event.number }},
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: `**The following links are broken:** \n${brokenLinksString}`
-          })
+        name: artifact
+        path: artifact.txt
