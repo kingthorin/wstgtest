@@ -11,18 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Download artifact'
-         uses: actions/download-artifact@v4
-         env:
-           REPO: ${{ context.repo.repo }}
-           RUN_ID: ${{ context.payload.workflow_run.id }}
-         with:
-           name: pr_number
-           github-token: ${{ secrets.GITHUB_TOKEN }} # token with actions:read permissions on target repo
-           repository: ${{ context.repo.repo }} 
-           run-id: ${{ context.payload.workflow_run.id }}
+        uses: actions/download-artifact@v4
+        env:
+          REPO: ${{ context.repo.repo }}
+          RUN_ID: ${{ context.payload.workflow_run.id }}
+        with:
+          name: pr_number
+          github-token: ${{ secrets.GITHUB_TOKEN }} # token with actions:read permissions on target repo
+          repository: ${{ context.repo.repo }} 
+          run-id: ${{ context.payload.workflow_run.id }}
       - name: 'Unzip artifact'
         run: unzip pr_number.zip
-
       - name: 'Comment on PR'
         uses: actions/github-script@v5
         with:
