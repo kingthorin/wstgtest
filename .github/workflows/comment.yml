@@ -37,11 +37,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            let fs = require('fs');
+            const fs = require("fs");
             const issue_number = Number(fs.readFileSync('./pr_number'));
-            await github.rest.issues.createComment({
+            github.rest.issues.createComment({
+              issue_number: ${{ github.event.number }},
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: issue_number,
               body: `Thank you for the PR! ${issue_number}`
-            });
+            })
