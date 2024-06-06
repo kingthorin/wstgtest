@@ -13,8 +13,8 @@ jobs:
           PR_NUMBER: ${{ github.event.number }}
         run: |
           mkdir -p ./pr
-          echo $PR_NUMBER > ./pr/pr_number
+          echo $PR_NUMBER > ./pr/artifact.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: pr_number
+          name: artifact
           path: pr/
