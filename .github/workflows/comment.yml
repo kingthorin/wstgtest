@@ -15,13 +15,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: artifact
-          path: ${{ github.workspace }}/artifact.zip
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
       - name: 'Unzip artifact'
         run: |
           ls -l
-          unzip ${{ github.workspace }}/artifact.zip
+          file artifact
       - name: 'Comment on PR'
         uses: actions/github-script@v7
         with:
