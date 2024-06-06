@@ -7,8 +7,9 @@ on:
       - completed
 
 jobs:
-  download:
+  comment:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     steps:
       - name: 'Download artifact'
         uses: actions/github-script@v7
