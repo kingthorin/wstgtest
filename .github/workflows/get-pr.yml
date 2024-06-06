@@ -27,6 +27,6 @@ jobs:
             pr_number
             artifact.txt
       - name: Call
-        uses: ./.github/workflows/comment_call.yml
+        uses: kingthorin/wstgtest/.github/workflows/comment_call.yml@master
         with:
           pr_number: ${{ steps.pr_number.outputs.pr_number }}
