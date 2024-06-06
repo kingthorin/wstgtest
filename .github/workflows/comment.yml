@@ -38,10 +38,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             let fs = require('fs');
-            const issue_number = Number(fs.readFileSync('./artifact.txt'));
+            const issue_number = Number(fs.readFileSync('./pr_number'));
+            const artifactString = fs.readFileSync('./artifact.txt').toString().trimEnd();
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: ${{ github.event.number }},
-              body: `Thank you for the PR! ${issue_number}`
+              issue_number: issue_number,
+              body: `${artifactString}`
             });
