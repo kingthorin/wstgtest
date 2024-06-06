@@ -11,17 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     steps:
-      - name: Download PR test coverage report
+      - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
           name: artifact
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
-      - name: 'Unzip artifact'
-        run: |
-          ls -l
-          file artifact
-      - name: 'Comment on PR'
+      - name: Comment on PR
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
