@@ -14,7 +14,10 @@ jobs:
         run: |
           mkdir -p ./pr
           echo $PR_NUMBER > pr_number
+          echo Thanks for the PR $PR_NUMBER > artifact.txt
       - uses: actions/upload-artifact@v4
         with:
           name: artifact
-          path: pr_number
+          path: |
+            pr_number
+            artifact.txt
