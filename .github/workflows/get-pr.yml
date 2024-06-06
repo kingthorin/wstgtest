@@ -9,23 +9,21 @@ jobs:
     outputs:
       pr_number: ${{ steps.pr_number.outputs.pr_number }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Save PR number
-        id: pr_number
-        env:
-          PR_NUMBER: ${{ github.event.number }}
-        run: |
-          mkdir -p ./pr
-          echo $PR_NUMBER > pr_number
-          echo Thanks for the PR $PR_NUMBER > artifact.txt
-          echo "pr_number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
-      - uses: actions/upload-artifact@v4
-        with:
-          name: artifact
-          path: |
-            pr_number
-            artifact.txt
+    - name: pr_number
+      env:
+        PR_NUMBER: ${{ github.event.number }}
+      run: |
+        mkdir -p ./pr
+        echo $PR_NUMBER > pr_number
+        echo Thanks for the PR $PR_NUMBER > artifact.txt
+        echo "pr_number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+    - name: attach
+      uses: actions/upload-artifact@v4
+      with:
+        name: artifact
+        path: |
+          pr_number
+          artifact.txt
   call:
     uses: kingthorin/wstgtest/.github/workflows/comment_call.yml@master
     with:
