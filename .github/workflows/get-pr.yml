@@ -8,7 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       pr_number: ${{ steps.pr_number.outputs.pr_number }}
-    steps:        
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Save PR number
         id: pr_number
         env:
