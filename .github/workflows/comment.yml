@@ -2,7 +2,7 @@ name: Comment
 
 on:
   workflow_run:
-    workflows: ['Upload data', 'Markdown Link Check']
+    workflows: ['Upload data', 'Markdown Link Check', 'Markdown Lint Check', 'Markdown Terminology Lint Check']
     types:
       - completed
 
