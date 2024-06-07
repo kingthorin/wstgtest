@@ -6,8 +6,6 @@ on:
 jobs:
   upload:
     runs-on: ubuntu-latest
-    outputs:
-      pr_number: ${{ steps.pr_number.outputs.pr_number }}
     steps:
     - id: pr_number
       env:
@@ -24,8 +22,4 @@ jobs:
         path: |
           pr_number
           artifact.txt
-  call:
-    needs: upload
-    uses: kingthorin/wstgtest/.github/workflows/comment_call.yml@master
-    with:
-      pr_number: ${{ needs.upload.steps.pr_number.outputs.pr_number }}
+ 
