@@ -38,7 +38,7 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
     - name: PR link check
-      if: github.event_name == 'pull_request_target'
+      if: github.event_name == 'pull_request'
       env:
         FILES: '${{ steps.files.outputs.files_updated }} ${{ steps.files.outputs.files_created }}'
       run: |
