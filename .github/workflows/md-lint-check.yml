@@ -41,7 +41,7 @@ jobs:
         sed -i 's/```/triple-backtick/g' lint.txt
     - name: Attach Linting Issues
       if: failure()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Linting Issues
         path: lint.txt
