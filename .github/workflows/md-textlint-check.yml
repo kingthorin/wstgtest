@@ -62,7 +62,7 @@ jobs:
         cat log.txt | grep -v '✔ Fixed' | tr '✔' '✖' >mistakes.txt
     - name: Attach Mistakes
       if: failure()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Terminology Mistakes
         path: mistakes.txt
