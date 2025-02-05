@@ -1,6 +1,7 @@
 name: Test scan
 
 on:
+  workflow_dispatch:
 
 jobs:
   scan:
