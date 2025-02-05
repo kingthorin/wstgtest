@@ -61,6 +61,7 @@ jobs:
           artifact.txt
           pr_number
     - name: Get artifact link
+      if: failure()
       run:  |
           echo 'Artifact URL is ${{ steps.upload.outputs.artifact-url }}'
           echo '${{ steps.upload.outputs.artifact-url }}' >> $GITHUB_STEP_SUMMARY
