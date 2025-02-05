@@ -59,3 +59,7 @@ jobs:
         path: |
           artifact.txt
           pr_number
+    - name: Get artifact link
+      run:  |
+          echo 'Artifact URL is ${{ steps.artifact-upload-step.outputs.artifact-url }}'
+          echo '${{ steps.artifact-upload-step.outputs.artifact-url }}' >> $GITHUB_STEP_SUMMARY
