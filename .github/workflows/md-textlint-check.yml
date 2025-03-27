@@ -84,3 +84,6 @@ jobs:
     needs: textlint
     if: failure()
     uses: kingthorin/wstgtest/.github/workflows/comment.yml@master
+    permissions:
+      pull-requests: write
+      contents: read
