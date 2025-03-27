@@ -80,3 +80,7 @@ jobs:
         path: |
           artifact.txt
           pr_number
+  comment:
+    needs: textlint
+    if: failure()
+    uses: kingthorin/wstgtest/.github/workflows/comment.yml@main
