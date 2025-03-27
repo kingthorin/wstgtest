@@ -83,4 +83,4 @@ jobs:
   comment:
     needs: textlint
     if: failure()
-    uses: kingthorin/wstgtest/.github/workflows/comment.yml@main
+    uses: kingthorin/wstgtest/.github/workflows/comment.yml@master
